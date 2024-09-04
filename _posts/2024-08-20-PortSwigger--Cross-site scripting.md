@@ -47,7 +47,7 @@ categories: [渗透靶场, PortSwigger]
 
 ![image-20240830173919108](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202408301739182.png)
 
-（2）插入<script>标签代码实现弹窗
+（2）插入script标签代码实现弹窗
 
 ![image-20240903150619868](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409031506968.png)
 
@@ -81,11 +81,11 @@ categories: [渗透靶场, PortSwigger]
 
 ![image-20240903152209980](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409031522046.png)
 
-（3）查看网页源码，trackSearch函数通过document.write将<img>内容写入HTML页面中，GET获取query
+（3）查看网页源码，trackSearch函数通过document.write将img内容写入HTML页面中，GET获取query
 
 ![image-20240904130300563](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409041303681.png)
 
-（4）相比于<script>标签直接插入HTML源码中，这里页面是通过document.write来将内容写入页面中的，因此只需要闭合<img>标签，再拼接<script>标签，那么document.write在写入页面时会将<img>和<script>的内容一起写入页面源码中
+（4）相比于script标签直接插入HTML源码中，这里页面是通过document.write来将内容写入页面中的，因此只需要闭合img标签，再拼接script标签，那么document.write在写入页面时会将img和script标签的内容一起写入页面源码中
 
 ```python
 "><script>alert('hacker')</script>
@@ -103,7 +103,7 @@ categories: [渗透靶场, PortSwigger]
 
 ![image-20240903224807096](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409032248189.png)
 
-（2）查看源码，query通过GET获取，query的值并不是直接插入页面源码中，而是通过innerHTML方法将query的值传入searchmessage，需要注意的是innerHTML不会执行<script>标签的代码，因此需要通过事件处理程序属性进行XSS触发
+（2）查看源码，query通过GET获取，query的值并不是直接插入页面源码中，而是通过innerHTML方法将query的值传入searchmessage，需要注意的是innerHTML不会执行script标签的代码，因此需要通过事件处理程序属性进行XSS触发
 
 ```py
 #当<img>标签中的src中指向异常值时,将会执行onerror语句
@@ -126,7 +126,7 @@ categories: [渗透靶场, PortSwigger]
 
 ![image-20240903230800978](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409032308051.png)
 
-（3）变量传参，<script>标签的代码无法被直接执行，既然returnpath是GET获取，那么就可以通过javascript:方案来直接执行JS代码
+（3）变量传参，script标签的代码无法被直接执行，既然returnpath是GET获取，那么就可以通过javascript:方案来直接执行JS代码
 
 ```python
 javascript:alert('hacker')
@@ -138,7 +138,7 @@ javascript:alert('hacker')
 
 ## 6.**DOM** **XSS** **in** **jQuery** **selector** **sink using a hashchange event**
 
-（1）页面除了View blog没有其他地方可进行数据交互，进行源码查看，并且检索<script>标签
+（1）页面除了View blog没有其他地方可进行数据交互，进行源码查看，并且检索script标签
 
 ![image-20240903235056689](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409032350794.png)
 
@@ -146,7 +146,7 @@ javascript:alert('hacker')
 
 ![image-20240903235527005](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409032355074.png)
 
-（3）<scrpit>标签无法直接执行，需要通过事件处理实现弹窗
+（3）script标签无法直接执行，需要通过事件处理实现弹窗
 
 ```python
 #<img src=1 onerror=alert(1)>
@@ -156,13 +156,13 @@ javascript:alert('hacker')
 
 ## 7.**Reflected** **XSS** **into attribute with angle brackets HTML-encoded**
 
-（1）输入框提交测试数据，内容回显，<script>标签无法实现弹窗
+（1）输入框提交测试数据，内容回显，script标签无法实现弹窗
 
 ![image-20240904000331881](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409040003940.png)
 
 ![image-20240904000434036](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409040004095.png)
 
-（2）源码查看，发现<script>标签作为input的value值，尝试闭合input后发现尖括号被URL编码
+（2）源码查看，发现script标签作为input的value值，尝试闭合input后发现尖括号被URL编码
 
 ![image-20240904000802996](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409040008076.png)
 
@@ -180,7 +180,7 @@ javascript:alert('hacker')
 
 ## 8.**Stored** **XSS** **into anchor** `href` **attribute with double quotes HTML-encoded**
 
-（1）页面除了View blog 没有其他地方可以进行数据交互，进行源码查看，并检索<script>标签，观察是否存在可利用代码段
+（1）页面除了View blog 没有其他地方可以进行数据交互，进行源码查看，并检索script标签，观察是否存在可利用代码段
 
 ![image-20240904110706819](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409041107904.png)
 
@@ -190,7 +190,7 @@ javascript:alert('hacker')
 
 ![image-20240904111854140](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409041118202.png)
 
-（3）<script>标签插入尝试，<script>并没有被执行，源码中检索<script>标签，发现尖括号被进行编码
+（3）script标签插入尝试，script并没有被执行，源码中检索script标签，发现尖括号被进行编码
 
 ![image-20240904111836255](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409041118314.png)
 
@@ -210,17 +210,17 @@ javascript:alert('hacker')
 
 ## 9.**Reflected** **XSS** **into a** **JavaScript** **string with angle brackets** **HTML** **encoded**
 
-（1）输入框提交测试数据，发现内容回显，插入<script>标签没实现弹窗
+（1）输入框提交测试数据，发现内容回显，插入script标签没能实现弹窗
 
 ![image-20240904112941920](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409041129987.png)
 
 ![image-20240904113007231](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409041130302.png)
 
-（2）查看源码，检索<script>标签，发现encodeURIComponent函数将用户输入的特殊字符进行URL编码
+（2）查看源码，检索script标签，发现encodeURIComponent函数将用户输入的特殊字符进行URL编码
 
 ![image-20240904114227498](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409041142584.png)
 
-（3）document.write向页面中插入<img>，如果能闭合searchterms并且拼接弹窗函数就能实现弹窗
+（3）document.write向页面中插入img，如果能闭合searchterms并且拼接弹窗函数就能实现弹窗
 
 ```python
 #单引号闭合searchterms,分号执行多条语句
@@ -239,15 +239,15 @@ javascript:alert('hacker')
 
 ## 10.DOM XSS in `document.write` sink using source `location.search` inside a select element
 
-（1）页面源码检索<script>标签查看是否存在可利用代码段
+（1）页面源码检索script标签查看是否存在可利用代码段
 
 ![image-20240904213616803](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409042136981.png)
 
-（2）Home无利用代码段，进入商品页面进行源码查看，document.write将<option>和store拼接后写入页面，GET获取storeid
+（2）Home无利用代码段，进入商品页面进行源码查看，document.write将option和store拼接后写入页面，GET获取storeid
 
 ![image-20240904213848742](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409042138871.png)
 
-（3）闭合<option>拼接<script>标签即可实现弹窗
+（3）闭合option标签并拼接script标签即可实现弹窗
 
 ```python
 &storeId=</option><script>alert('hacker')</script>
