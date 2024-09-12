@@ -534,7 +534,7 @@ window.open('https://0a8700cc043140858299f69100780081.web-security-academy.net//
 
 （5）在Referer字段中随意添加内容服务端校验居然通过了，证明服务端并没有完全校验Referer字段中的内容，只是对特殊内容是否存在进行了校验，所以接下来尝试逐步删减内容，直到服务端回显出现错误。逐步删除参数，路径和域名，当删掉域名后服务端回显校验错误
 
-![image-20240912210412601](C:\Users\84615\AppData\Roaming\Typora\typora-user-images\image-20240912210412601.png)
+![img](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409130106499)
 
 ![image-20240912210445205](https://cdn.jsdelivr.net/gh/Pres3nt/Typoraimages@master/images/202409122104309.png)
 
